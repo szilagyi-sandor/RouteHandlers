@@ -8,7 +8,6 @@ export const adminRoutes = createRoutes({
   ...createRoutePathObj([adminlayoutPath], {
     adminHome: [""],
     adminSuperSecret: adminSuperSecretOwnPaths,
-    restrictedPage: adminSuperSecretOwnPaths,
-    adminNotFound: [""],
+    adminRestrictedPage: adminSuperSecretOwnPaths,
   }),
 });

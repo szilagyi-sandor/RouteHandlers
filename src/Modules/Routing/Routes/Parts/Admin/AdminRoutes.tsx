@@ -37,7 +37,7 @@ export default function AdminRoutes() {
           </Route>
         )}
 
-        <Route path={adminRoutes.restrictedPage} exact>
+        <Route path={adminRoutes.adminRestrictedPage} exact>
           <AdminRestrictedPage docTitle="Admin restricted - RouteHandlers" />
         </Route>
 

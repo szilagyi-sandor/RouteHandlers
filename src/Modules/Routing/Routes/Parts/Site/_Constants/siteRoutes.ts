@@ -12,8 +12,5 @@ export const loginOwnPaths = ["/login"];
 export const siteRoutes = createRoutes({
   home: ["/"],
   login: [...loginOwnPaths, ...complementPaths(adminlayoutPath, ["*"])],
-  restrictedPage: [
-    ...loginOwnPaths,
-    ...complementPaths(adminlayoutPath, ["*"]),
-  ],
+  restrictedPage: [...loginOwnPaths],
 });

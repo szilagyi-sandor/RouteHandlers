@@ -52,7 +52,7 @@ export default function LoginPage({ docTitle }: PageProps) {
             >)[key];
 
             return (
-              <div>
+              <div key={role.id}>
                 <button onClick={() => _setRoleId(role.id)}>
                   Login as {role.name}
                 </button>
