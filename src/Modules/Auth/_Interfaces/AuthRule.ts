@@ -1,4 +1,4 @@
-// CHECKED 1.0
+// TODO: CHECK
 import { AuthCheckTypes } from "./AuthCheckTypes";
 
 export type AuthRule = RequiredLevelAR | AcceptedRolesAR | ExcludedRolesAR;

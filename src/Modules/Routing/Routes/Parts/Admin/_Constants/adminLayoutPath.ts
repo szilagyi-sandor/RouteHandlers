@@ -1,2 +1,3 @@
-// CHECKED 1.0
-export const adminlayoutPath = ["/admin", "/administrator"];
+// TODO: CHECK
+// export const adminlayoutPath = ["/admin", "/administrator"];
+export const TODO = "";

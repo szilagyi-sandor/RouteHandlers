@@ -1,4 +1,5 @@
-// CHECKED 1.0
-import { Routes } from "../_Interfaces/Routes";
+// TODO: CHECK
+export const TODO = "";
+// import { Routes } from "../_Interfaces/Routes";
 
-export const createRoutes = <T extends Routes>(routes: T): T => routes;
+// export const createRoutes = <T extends Routes>(routes: T): T => routes;

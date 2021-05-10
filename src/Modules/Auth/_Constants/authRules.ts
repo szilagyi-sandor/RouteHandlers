@@ -1,4 +1,4 @@
-// CHECKED 1.0
+// TODO: CHECK
 import { AuthRule } from "../_Interfaces/AuthRule";
 import { authCheckTypes } from "./authCheckTypes";
 import { roles } from "./roles";

@@ -56,6 +56,4 @@ export const getNextOdometerItem = (
 const translateOdometerItem = <T>(
   arrOfArrs: T[][],
   odometerItem: number[]
-): T[] => {
-  return odometerItem.map((value, index) => arrOfArrs[index][value]);
-};
+): T[] => odometerItem.map((value, index) => arrOfArrs[index][value]);

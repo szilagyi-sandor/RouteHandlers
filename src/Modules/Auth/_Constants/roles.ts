@@ -1,4 +1,4 @@
-// CHECKED 1.0
+// TODO: CHECK
 // EnumObject helper from BLC can be used here.
 export const roles = {
   unknown: { id: -1, name: "Unkown", value: "unkown" },

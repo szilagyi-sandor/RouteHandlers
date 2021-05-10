@@ -1,11 +1,9 @@
-// CHECKED 1.0
+// TODO: CHECK
 import React from "react";
 
-import { useDocTitle } from "Modules/Routing/RouteHandlers/Hooks/useDocTitle/useDocTitle";
-import { PageProps } from "Modules/Routing/RouteHandlers/_Interfaces/PageProps";
-
-export default function HomePage({ docTitle }: PageProps) {
-  useDocTitle(docTitle);
+export default function HomePage() {
+  // TODO:
+  // useDocTitle(docTitle);
 
   return (
     <section className="homePage">

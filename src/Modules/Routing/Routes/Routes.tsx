@@ -1,34 +1,19 @@
-// CHECKED 1.0
-import React, { lazy } from "react";
+import React, { useEffect } from "react";
 
-import { useAuthContext } from "Modules/Auth/Context/AuthContext";
-import { adminRequiredAR } from "Modules/Auth/_Constants/authRules";
-import { checkAuth } from "Modules/Auth/_Helpers/authCheckers";
-import { Switch } from "react-router";
-import { Route } from "react-router-dom";
-import RootLayout from "Views/_Common/Layouts/_Root/RootLayout";
-import { getLayoutPaths } from "../RouteHandlers/_Helpers/getLayoutPath";
-import { adminRoutes } from "./Parts/Admin/_Constants/adminRoutes";
+import RouteMapper from "../RouteHandlers_2/Components/RouteMapper/RouteMapper";
+import { routes } from "../_Constants/routes";
 
-const AdminRoutes = lazy(() => import("./Parts/Admin/AdminRoutes"));
-const SiteRoutes = lazy(() => import("./Parts/Site/SiteRoutes"));
-
+// TODO:  drilledProps={{ test: "test" }}
 export default function Routes() {
-  const roleId = useAuthContext();
+  useEffect(() => {
+    console.log("routes render");
+  });
 
   return (
-    <RootLayout>
-      <Switch>
-        {checkAuth(adminRequiredAR, roleId) && (
-          <Route path={getLayoutPaths(adminRoutes)}>
-            <AdminRoutes />
-          </Route>
-        )}
-
-        <Route>
-          <SiteRoutes />
-        </Route>
-      </Switch>
-    </RootLayout>
+    <RouteMapper
+      routes={routes}
+      suspenseFallback={"loading..."}
+      renderTest={"routes render test"}
+    />
   );
 }

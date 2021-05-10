@@ -1,4 +1,5 @@
-// CHECKED 1.0
-export interface PageProps {
-  docTitle?: string;
-}
+// TODO: CHECK
+export const TODO = "";
+// export interface PageProps {
+//   docTitle?: string;
+// }

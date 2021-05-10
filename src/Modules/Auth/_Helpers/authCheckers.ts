@@ -1,4 +1,4 @@
-// CHECKED 1.0
+// TODO: CHECK
 import { authCheckTypes } from "../_Constants/authCheckTypes";
 import {
   AcceptedRolesAR,

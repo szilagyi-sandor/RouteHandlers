@@ -1,4 +1,4 @@
-// CHECKED 1.0
+// TODO: CHECK
 export interface AuthCheckTypes {
   requiredLevel: 1;
   acceptedRoles: 2;

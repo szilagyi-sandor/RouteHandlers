@@ -1,7 +1,15 @@
-// CHECKED 1.0
-import React, { PropsWithChildren, Suspense } from "react";
+// TODO: CHECK
+import React, { useEffect } from "react";
 
-export default function SiteLayout({ children }: PropsWithChildren<{}>) {
+import { RouteComponentProps } from "Modules/Routing/RouteHandlers_2/_Interfaces/RouteComponentProps";
+import RouteMapper from "Modules/Routing/RouteHandlers_2/Components/RouteMapper/RouteMapper";
+
+export default function SiteLayout(props: RouteComponentProps) {
+  useEffect(() => {
+    // TODO:
+    // console.log("sitelayout render");
+  });
+
   return (
     <section className="siteLayout">
       <header>
@@ -9,7 +17,7 @@ export default function SiteLayout({ children }: PropsWithChildren<{}>) {
       </header>
 
       <main className="content">
-        <Suspense fallback="Site layout loading...">{children}</Suspense>
+        <RouteMapper {...props.routeMapperProps} />
       </main>
 
       <footer>

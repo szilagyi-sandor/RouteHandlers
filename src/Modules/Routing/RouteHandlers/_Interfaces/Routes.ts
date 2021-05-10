@@ -1,2 +1,3 @@
-// CHECKED 1.0
-export type Routes = Record<string, string[]>;
+// TODO: CHECK
+export const TODO = "";
+// export type Routes = Record<string, string[]>;

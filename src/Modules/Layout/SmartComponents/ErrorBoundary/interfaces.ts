@@ -1,4 +1,4 @@
-// CHECKED 1.0
+// TODO: CHECK
 export interface ErrorBoundaryState {
   hasError: boolean;
 }

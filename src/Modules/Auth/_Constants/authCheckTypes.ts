@@ -1,4 +1,4 @@
-// CHECKED 1.0
+// TODO: CHECK
 import { AuthCheckTypes } from "../_Interfaces/AuthCheckTypes";
 
 export const authCheckTypes: AuthCheckTypes = {
