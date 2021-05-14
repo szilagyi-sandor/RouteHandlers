@@ -2,10 +2,9 @@
 import React from "react";
 
 import { useDocTitle } from "Modules/Routing/RouteHandlers/Hooks/useDocTitle/useDocTitle";
-import { PageProps } from "Modules/Routing/RouteHandlers/_Interfaces/PageProps";
 
-export default function ErrorPage({ docTitle }: PageProps) {
-  useDocTitle(docTitle);
+export default function ErrorPage() {
+  useDocTitle(undefined, undefined, "RouteHandlers Error");
 
   return (
     <section className="errorPage">

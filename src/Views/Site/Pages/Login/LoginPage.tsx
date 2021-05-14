@@ -1,33 +1,38 @@
 // CHECKED 1.0
 import React from "react";
 
-import { useDocTitle } from "Modules/Routing/RouteHandlers/Hooks/useDocTitle/useDocTitle";
-import { PageProps } from "Modules/Routing/RouteHandlers/_Interfaces/PageProps";
 import { useAuthActionsContext } from "Modules/Auth/Context/AuthContext";
 import { roles } from "Modules/Auth/_Constants/roles";
-import { useHistory } from "react-router";
-import { matchPath, useLocation } from "react-router-dom";
-import { loginOwnPaths } from "Modules/Routing/Routes/Parts/Site/_Constants/siteRoutes";
-import { getRoutePath } from "Modules/Routing/RouteHandlers/_Helpers/getRoutePath";
-import { routes } from "Modules/Routing/Routes/_Constants/routes";
+import { RouteComponentProps } from "Modules/Routing/RouteHandlers/_Interfaces/RouteComponentProps";
+import { useDocTitle } from "Modules/Routing/RouteHandlers/Hooks/useDocTitle/useDocTitle";
+import { matchPath, useHistory, useLocation } from "react-router-dom";
+import { getRoutePath } from "Modules/Routing/RouteHandlers/_Helpers/Path/getRoutePath";
+import { routes } from "Modules/Routing/_Constants/routes";
+import { getRoutePaths } from "Modules/Routing/RouteHandlers/_Helpers/Path/getRoutePaths";
 
-export default function LoginPage({ docTitle }: PageProps) {
+export default function LoginPage({
+  route,
+  routeMapperProps,
+}: RouteComponentProps) {
+  useDocTitle(routeMapperProps.routes, route);
+
   const setRoleId = useAuthActionsContext();
-
   const history = useHistory();
   const { pathname } = useLocation();
-  useDocTitle(docTitle);
 
-  // In a real application, this should be handled in the action, so it only redirects when
-  // it's successful.
+  const { site } = routes.root._children;
+  const { home, login } = site._children;
+
   const _setRoleId = (roleId: number) => {
     if (
       matchPath(pathname, {
-        path: loginOwnPaths,
+        path: getRoutePaths(routes, login),
         exact: true,
       })
     ) {
-      history.push(getRoutePath(routes.home));
+      // In a real application, this should be handled in the action, so it only redirects when
+      // it's successful.
+      history.push(getRoutePath(routes, home));
     }
 
     setRoleId(roleId);
@@ -46,10 +51,12 @@ export default function LoginPage({ docTitle }: PageProps) {
           .filter((key) => key !== "visitor" && key !== "unknown")
           .map((key) => {
             // EnumObject helper from BLC can be used here.
-            const role = (roles as Record<
-              string,
-              { id: number; value: string; name: string }
-            >)[key];
+            const role = (
+              roles as Record<
+                string,
+                { id: number; value: string; name: string }
+              >
+            )[key];
 
             return (
               <div key={role.id}>

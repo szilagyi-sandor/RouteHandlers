@@ -2,10 +2,13 @@
 import React from "react";
 
 import { useDocTitle } from "Modules/Routing/RouteHandlers/Hooks/useDocTitle/useDocTitle";
-import { PageProps } from "Modules/Routing/RouteHandlers/_Interfaces/PageProps";
+import { RouteComponentProps } from "Modules/Routing/RouteHandlers/_Interfaces/RouteComponentProps";
 
-export default function AdminNotFoundPage({ docTitle }: PageProps) {
-  useDocTitle(docTitle);
+export default function AdminNotFoundPage({
+  route,
+  routeMapperProps,
+}: RouteComponentProps) {
+  useDocTitle(routeMapperProps.routes, route);
 
   return (
     <section className="adminNotFoundPage">

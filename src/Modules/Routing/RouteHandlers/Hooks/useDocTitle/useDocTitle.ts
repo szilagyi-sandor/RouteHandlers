@@ -1,10 +1,25 @@
 // CHECKED 1.0
 import { useEffect } from "react";
 
-export const useDocTitle = (title?: string) => {
+import { getRouteDocTitle } from "../../_Helpers/Route/getRouteDocTitle";
+import { Route } from "../../_Interfaces/Route";
+import { Routes } from "../../_Interfaces/Routes";
+
+export const useDocTitle = (
+  routes?: Routes,
+  route?: Route,
+  addition?: string
+) => {
   useEffect(() => {
-    if (title) {
-      document.title = title;
+    let title = "";
+    if (routes && route) {
+      title = getRouteDocTitle(routes, route);
     }
-  }, [title]);
+
+    if (addition) {
+      title += ` addition`;
+    }
+
+    document.title = title;
+  }, [routes, route, addition]);
 };

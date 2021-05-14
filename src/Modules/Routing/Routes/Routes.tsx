@@ -1,34 +1,29 @@
 // CHECKED 1.0
-import React, { lazy } from "react";
+import React, { Suspense, useCallback, useMemo } from "react";
 
 import { useAuthContext } from "Modules/Auth/Context/AuthContext";
-import { adminRequiredAR } from "Modules/Auth/_Constants/authRules";
 import { checkAuth } from "Modules/Auth/_Helpers/authCheckers";
-import { Switch } from "react-router";
-import { Route } from "react-router-dom";
-import RootLayout from "Views/_Common/Layouts/_Root/RootLayout";
-import { getLayoutPaths } from "../RouteHandlers/_Helpers/getLayoutPath";
-import { adminRoutes } from "./Parts/Admin/_Constants/adminRoutes";
-
-const AdminRoutes = lazy(() => import("./Parts/Admin/AdminRoutes"));
-const SiteRoutes = lazy(() => import("./Parts/Site/SiteRoutes"));
+import RouteMapper from "../RouteHandlers/Components/RouteMapper/RouteMapper";
+import { Route } from "../RouteHandlers/_Interfaces/Route";
+import { routes } from "../_Constants/routes";
 
 export default function Routes() {
   const roleId = useAuthContext();
+  const _drilledProps = useMemo(() => ({ test: "test" }), []);
+  const authChecker = useCallback(
+    (route: Route) => {
+      return checkAuth(roleId, route.authRule);
+    },
+    [roleId]
+  );
 
   return (
-    <RootLayout>
-      <Switch>
-        {checkAuth(adminRequiredAR, roleId) && (
-          <Route path={getLayoutPaths(adminRoutes)}>
-            <AdminRoutes />
-          </Route>
-        )}
-
-        <Route>
-          <SiteRoutes />
-        </Route>
-      </Switch>
-    </RootLayout>
+    <Suspense fallback={"App loading..."}>
+      <RouteMapper
+        routes={routes}
+        drilledProps={_drilledProps}
+        authChecker={authChecker}
+      />
+    </Suspense>
   );
 }

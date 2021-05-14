@@ -1,11 +1,14 @@
 // CHECKED 1.0
 import React from "react";
 
+import { RouteComponentProps } from "Modules/Routing/RouteHandlers/_Interfaces/RouteComponentProps";
 import { useDocTitle } from "Modules/Routing/RouteHandlers/Hooks/useDocTitle/useDocTitle";
-import { PageProps } from "Modules/Routing/RouteHandlers/_Interfaces/PageProps";
 
-export default function NotFoundPage({ docTitle }: PageProps) {
-  useDocTitle(docTitle);
+export default function NotFoundPage({
+  route,
+  routeMapperProps,
+}: RouteComponentProps) {
+  useDocTitle(routeMapperProps.routes, route);
 
   return (
     <section className="notFoundPage">

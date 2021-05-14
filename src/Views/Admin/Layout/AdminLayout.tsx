@@ -1,7 +1,9 @@
 // CHECKED 1.0
-import React, { PropsWithChildren, Suspense } from "react";
+import React, { Suspense } from "react";
 
-export default function AdminLayout({ children }: PropsWithChildren<{}>) {
+import { RouteComponentProps } from "Modules/Routing/RouteHandlers/_Interfaces/RouteComponentProps";
+
+export default function AdminLayout({ children }: RouteComponentProps) {
   return (
     <section className="adminLayout">
       <header>
@@ -9,7 +11,7 @@ export default function AdminLayout({ children }: PropsWithChildren<{}>) {
       </header>
 
       <main className="content">
-        <Suspense fallback="Admin layout loading...">{children}</Suspense>
+        <Suspense fallback={"Admin loading..."}>{children}</Suspense>
       </main>
 
       <footer>

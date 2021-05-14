@@ -1,7 +1,9 @@
 // CHECKED 1.0
-import React, { PropsWithChildren, Suspense } from "react";
+import React, { Suspense } from "react";
 
-export default function SiteLayout({ children }: PropsWithChildren<{}>) {
+import { RouteComponentProps } from "Modules/Routing/RouteHandlers/_Interfaces/RouteComponentProps";
+
+export default function SiteLayout({ children }: RouteComponentProps) {
   return (
     <section className="siteLayout">
       <header>
@@ -9,7 +11,7 @@ export default function SiteLayout({ children }: PropsWithChildren<{}>) {
       </header>
 
       <main className="content">
-        <Suspense fallback="Site layout loading...">{children}</Suspense>
+        <Suspense fallback={"Site loading..."}>{children}</Suspense>
       </main>
 
       <footer>
