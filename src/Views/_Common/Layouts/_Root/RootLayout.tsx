@@ -1,26 +1,21 @@
-// TODO: CHECK
-import React, { useEffect } from "react";
+// CHECKED 1.0
+import React, { Suspense } from "react";
 
 import { generatePath, Link } from "react-router-dom";
 import { roles } from "Modules/Auth/_Constants/roles";
+import { RouteComponentProps } from "Modules/Routing/RouteHandlers/_Interfaces/RouteComponentProps";
+import { routePaths } from "Modules/Routing/_Constants/routePaths";
 import {
   useAuthActionsContext,
   useAuthContext,
 } from "Modules/Auth/Context/AuthContext";
-import { RouteComponentProps } from "Modules/Routing/RouteHandlers_2/_Interfaces/RouteComponentProps";
-import { routePaths } from "Modules/Routing/_Constants/routePaths";
-import RouteMapper from "Modules/Routing/RouteHandlers_2/Components/RouteMapper/RouteMapper";
 
 // If the links are filtered based on the roleId or something, it should be stored in state,
 // and a helper function should create that array of links. This is good because it's possible that
 // we always want to show the admin link but when the user is not logged in it will render the login page.
-export default function RootLayout(props: RouteComponentProps) {
+export default function RootLayout({ children }: RouteComponentProps) {
   const roleId = useAuthContext();
   const setRoleId = useAuthActionsContext();
-
-  useEffect(() => {
-    console.log("rootlayout render");
-  }, [props]);
 
   return (
     <section className="rootLayout">
@@ -67,7 +62,7 @@ export default function RootLayout(props: RouteComponentProps) {
       </header>
 
       <main className="content">
-        <RouteMapper {...props.routeMapperProps} />
+        <Suspense fallback={"Root loading..."}>{children}</Suspense>
       </main>
 
       <footer>

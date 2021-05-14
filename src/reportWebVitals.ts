@@ -1,4 +1,4 @@
-// TODO: CHECK
+// CHECKED 1.0
 import { ReportHandler } from "web-vitals";
 
 const reportWebVitals = (onPerfEntry?: ReportHandler) => {

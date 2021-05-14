@@ -1,33 +1,39 @@
-// TODO: CHECK
+// CHECKED 1.0
 import React from "react";
 
 import { useAuthActionsContext } from "Modules/Auth/Context/AuthContext";
 import { roles } from "Modules/Auth/_Constants/roles";
-import { useHistory } from "react-router";
-import { matchPath, useLocation } from "react-router-dom";
-import { RouteComponentProps } from "Modules/Routing/RouteHandlers_2/_Interfaces/RouteComponentProps";
+import { RouteComponentProps } from "Modules/Routing/RouteHandlers/_Interfaces/RouteComponentProps";
+import { useDocTitle } from "Modules/Routing/RouteHandlers/Hooks/useDocTitle/useDocTitle";
+import { matchPath, useHistory, useLocation } from "react-router-dom";
+import { getRoutePath } from "Modules/Routing/RouteHandlers/_Helpers/Path/getRoutePath";
+import { routes } from "Modules/Routing/_Constants/routes";
+import { getRoutePaths } from "Modules/Routing/RouteHandlers/_Helpers/Path/getRoutePaths";
 
-// TODO: A lot going on in here
-export default function LoginPage(props: RouteComponentProps) {
+export default function LoginPage({
+  route,
+  routeMapperProps,
+}: RouteComponentProps) {
+  useDocTitle(routeMapperProps.routes, route);
+
   const setRoleId = useAuthActionsContext();
-
   const history = useHistory();
   const { pathname } = useLocation();
-  // TODO:
-  // useDocTitle(docTitle);
 
-  // In a real application, this should be handled in the action, so it only redirects when
-  // it's successful.
+  const { site } = routes.root._children;
+  const { home, login } = site._children;
+
   const _setRoleId = (roleId: number) => {
-    // TODO: This logic is missing
-    // if (
-    //   matchPath(pathname, {
-    //     path: loginOwnPaths,
-    //     exact: true,
-    //   })
-    // ) {
-    //   history.push(getRoutePath(routes.home));
-    // }
+    if (
+      matchPath(pathname, {
+        path: getRoutePaths(routes, login),
+        exact: true,
+      })
+    ) {
+      // In a real application, this should be handled in the action, so it only redirects when
+      // it's successful.
+      history.push(getRoutePath(routes, home));
+    }
 
     setRoleId(roleId);
   };
@@ -45,10 +51,12 @@ export default function LoginPage(props: RouteComponentProps) {
           .filter((key) => key !== "visitor" && key !== "unknown")
           .map((key) => {
             // EnumObject helper from BLC can be used here.
-            const role = (roles as Record<
-              string,
-              { id: number; value: string; name: string }
-            >)[key];
+            const role = (
+              roles as Record<
+                string,
+                { id: number; value: string; name: string }
+              >
+            )[key];
 
             return (
               <div key={role.id}>

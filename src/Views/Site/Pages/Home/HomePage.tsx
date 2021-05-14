@@ -1,9 +1,14 @@
-// TODO: CHECK
+// CHECKED 1.0
 import React from "react";
 
-export default function HomePage() {
-  // TODO:
-  // useDocTitle(docTitle);
+import { useDocTitle } from "Modules/Routing/RouteHandlers/Hooks/useDocTitle/useDocTitle";
+import { RouteComponentProps } from "Modules/Routing/RouteHandlers/_Interfaces/RouteComponentProps";
+
+export default function HomePage({
+  route,
+  routeMapperProps,
+}: RouteComponentProps) {
+  useDocTitle(routeMapperProps.routes, route);
 
   return (
     <section className="homePage">

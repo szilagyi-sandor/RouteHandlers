@@ -1,10 +1,9 @@
-// TODO: CHECK
-import React from "react";
+// CHECKED 1.0
+import React, { Suspense } from "react";
 
-import { RouteComponentProps } from "Modules/Routing/RouteHandlers_2/_Interfaces/RouteComponentProps";
-import RouteMapper from "Modules/Routing/RouteHandlers_2/Components/RouteMapper/RouteMapper";
+import { RouteComponentProps } from "Modules/Routing/RouteHandlers/_Interfaces/RouteComponentProps";
 
-export default function AdminLayout(props: RouteComponentProps) {
+export default function AdminLayout({ children }: RouteComponentProps) {
   return (
     <section className="adminLayout">
       <header>
@@ -12,7 +11,7 @@ export default function AdminLayout(props: RouteComponentProps) {
       </header>
 
       <main className="content">
-        <RouteMapper {...props.routeMapperProps} />
+        <Suspense fallback={"Admin loading..."}>{children}</Suspense>
       </main>
 
       <footer>

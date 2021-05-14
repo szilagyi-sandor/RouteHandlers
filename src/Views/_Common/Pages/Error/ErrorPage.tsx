@@ -1,8 +1,11 @@
-// TODO: CHECK
+// CHECKED 1.0
 import React from "react";
 
-// TODO: Add doctitle
+import { useDocTitle } from "Modules/Routing/RouteHandlers/Hooks/useDocTitle/useDocTitle";
+
 export default function ErrorPage() {
+  useDocTitle(undefined, undefined, "RouteHandlers Error");
+
   return (
     <section className="errorPage">
       <header>

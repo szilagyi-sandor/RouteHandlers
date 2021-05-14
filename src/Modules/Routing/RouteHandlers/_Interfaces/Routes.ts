@@ -1,3 +1,4 @@
-// TODO: CHECK
-export const TODO = "";
-// export type Routes = Record<string, string[]>;
+// CHECKED 1.0
+import { Route } from "./Route";
+
+export type Routes = Record<string, Route>;

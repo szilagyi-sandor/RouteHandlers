@@ -1,4 +1,4 @@
-// TODO: CHECK
+// CHECKED 1.0
 import React from "react";
 import ReactDOM from "react-dom";
 

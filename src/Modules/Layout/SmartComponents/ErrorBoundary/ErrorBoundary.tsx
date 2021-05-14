@@ -1,4 +1,4 @@
-// TODO: CHECK
+// CHECKED 1.0
 import React, { Component, ErrorInfo } from "react";
 
 import { ErrorBoundaryState } from "./interfaces";

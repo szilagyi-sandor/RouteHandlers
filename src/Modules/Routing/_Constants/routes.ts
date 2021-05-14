@@ -1,5 +1,8 @@
-import { createRoutes } from "../RouteHandlers_2/_Helpers/Route/createRoutes";
-import { processRoutes } from "../RouteHandlers_2/_Helpers/Route/processRoutes";
+// CHECKED 1.0
+import { authRules } from "Modules/Auth/_Constants/authRules";
+import { complementPaths } from "../RouteHandlers/_Helpers/Path/complementPaths";
+import { createRoutes } from "../RouteHandlers/_Helpers/Route/createRoutes";
+import { processRoutes } from "../RouteHandlers/_Helpers/Route/processRoutes";
 import { layoutComponents } from "./layoutComponents";
 import { pageComponents } from "./pageComponents";
 
@@ -14,13 +17,12 @@ const {
   NotFoundPage,
   RestrictedPage,
 } = pageComponents;
-// TODO: Add props that can be injected from above to everything.
 
 const adminSuperSecretPath = ["/super-secret/:id"];
 const loginPath = ["/login", "/sign-in"];
+const adminLayoutPath = ["/admin", "/administrator"];
 
-// TODO: No need to export
-export const unprocessedRoutes = createRoutes({
+const unprocessedRoutes = createRoutes({
   root: {
     Component: RootLayout,
     paths: [""],
@@ -29,8 +31,8 @@ export const unprocessedRoutes = createRoutes({
     _children: {
       admin: {
         Component: AdminLayout,
-        authRule: "TODO",
-        paths: ["/admin", "/administrator"],
+        authRule: authRules.adminReq,
+        paths: adminLayoutPath,
         documentTitle: "| Admin ",
         _children: {
           home: {
@@ -40,19 +42,17 @@ export const unprocessedRoutes = createRoutes({
           },
           superSecret: {
             Component: AdminSuperSecretPage,
-            authRule: "TODO",
+            authRule: authRules.superAdminReq,
             paths: adminSuperSecretPath,
             documentTitle: "Super secret",
           },
           restricted: {
             Component: AdminRestrictedPage,
-            authRule: "TODO",
             paths: adminSuperSecretPath,
             documentTitle: "Restricted",
           },
           notFound: {
             Component: AdminNotFoundPage,
-            authRule: "TODO",
             paths: ["*"],
             documentTitle: "Not found",
           },
@@ -71,19 +71,18 @@ export const unprocessedRoutes = createRoutes({
           },
           login: {
             Component: LoginPage,
-            authRule: "TODO",
-            paths: loginPath,
+            authRule: authRules.visitorAcceptedReq,
+            paths: [...loginPath, ...complementPaths(["*"], adminLayoutPath)],
+
             documentTitle: "Login",
           },
           restricted: {
             Component: RestrictedPage,
-            authRule: "TODO",
-            paths: loginPath,
+            paths: [...complementPaths(["*"], adminLayoutPath)],
             documentTitle: "Restricted",
           },
           notFound: {
             Component: NotFoundPage,
-            authRule: "TODO",
             paths: [""],
             notExact: true,
             documentTitle: "Not found",

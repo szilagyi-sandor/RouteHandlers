@@ -1,3 +1,4 @@
+// CHECKED 1.0
 import { lazy } from "react";
 
 export const pageComponents = {
