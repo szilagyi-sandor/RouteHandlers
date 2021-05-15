@@ -18,5 +18,6 @@ export interface Route {
   processedInfo?: {
     parentSelectors?: string[][];
     childrenSelectors?: string[][];
+    key: string;
   };
 }

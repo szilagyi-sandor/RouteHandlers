@@ -27,6 +27,7 @@ export const processRoutes = <T extends Routes>(unprocessedRoutes: T): T => {
           ...route,
           processedInfo: {
             parentSelectors: allParentSelectors,
+            key: lastKey,
           },
         },
       };
@@ -60,7 +61,9 @@ export const processRoutes = <T extends Routes>(unprocessedRoutes: T): T => {
         ...output,
         [lastKey]: {
           ...route,
-          processedInfo: {},
+          processedInfo: {
+            key: lastKey,
+          },
         },
       };
     }

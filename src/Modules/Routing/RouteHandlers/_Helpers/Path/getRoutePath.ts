@@ -9,13 +9,13 @@ export const getRoutePath = (
   routeObj: Record<string, Route>,
   route: Route,
   index?: number,
-  fallback?: string
+  fallback: string = "/"
 ): string => {
   const paths = getRouteFullPaths(routeObj, route);
 
   if (!paths) {
     // Fallback in case something goes wrong.
-    return fallback ? fallback : "/";
+    return fallback;
   }
 
   // If we have an index, we create all the combinations, and select the one given.

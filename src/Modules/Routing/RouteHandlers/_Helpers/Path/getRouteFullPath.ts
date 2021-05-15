@@ -1,7 +1,6 @@
 // CHECKED 1.0
 import { Route } from "../../_Interfaces/Route";
 import { getCombinations } from "../Generic/combinations";
-import { getPathsListFromRouteList } from "./getPathsListFromRouteList";
 import { getNestedItemList } from "../Generic/getNestedItemList";
 import { filterOutParentSelectors } from "../Selector/filterOutParentSelectors";
 import { getAllSelectorsFromSelector } from "../Selector/getAllSelectorsFromSelector";
@@ -32,7 +31,16 @@ export const getRouteFullPaths = (
       return undefined;
     }
 
-    const parentPaths = getPathsListFromRouteList(parentRouteList);
+    const parentPaths = parentRouteList.reduce<string[][] | undefined>(
+      (output, pr) => {
+        if (output && pr.paths && pr.paths.length > 0) {
+          return [...output, pr.paths];
+        }
+
+        return undefined;
+      },
+      []
+    );
 
     if (!parentPaths) {
       // We return undefined if one of the parent has no path on it's own.
@@ -70,7 +78,15 @@ export const getRouteFullPaths = (
         return undefined;
       }
 
-      const relativeChildPagePaths = getPathsListFromRouteList(childPageRoutes);
+      const relativeChildPagePaths = childPageRoutes.reduce<
+        string[][] | undefined
+      >((output, cpr) => {
+        if (output && cpr.paths && cpr.paths.length > 0) {
+          return [...output, cpr.paths];
+        }
+
+        return undefined;
+      }, []);
 
       // We don't return undefined if a children has no path on it's own.
       // we simply dont add it to the current.
