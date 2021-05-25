@@ -17,7 +17,7 @@ export const useDocTitle = (
     }
 
     if (addition) {
-      title += ` addition`;
+      title += addition;
     }
 
     document.title = title;
